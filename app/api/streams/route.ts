@@ -16,6 +16,6 @@ export async function POST (req : NextRequest) {
             url : data.url
         })
     } catch (error) {
-        NextResponse.json({ error: "Error While Creating Stream" }, { status: 411 });
+        NextResponse.json({ message : "Error While Creating Stream" }, { status: 411 });
     }
 }
