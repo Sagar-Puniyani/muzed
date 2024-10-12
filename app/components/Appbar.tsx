@@ -13,7 +13,7 @@ export function Appbar() {
         {session.data?.user && (
           <button
             type="button"
-            className="bg-purple-600 text-white hover:bg-purple-700"
+            className="bg-orange-500 text-white hover:bg-orange-700 py-2 rounded-md px-5"
             onClick={() => signOut()}
           >
             Logout
@@ -22,7 +22,7 @@ export function Appbar() {
         {!session.data?.user && (
           <button
             type="button"
-            className="bg-purple-600 text-white hover:bg-purple-700"
+            className="bg-orange-500 text-white hover:bg-organge-700 px-5 py-2 rounded-md"
             onClick={() => signIn()}
           >
             Signin

@@ -1,3 +1,4 @@
-- To Database in Docker: 
+### To Database in Docker: 
 
-docker run -p 5432:5432 -e POSTGRES_PASSWORD=password postgres
+`docker pull postgres`
+`docker run -p 5432:5432 -e POSTGRES_PASSWORD=password postgres`
