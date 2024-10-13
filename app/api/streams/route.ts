@@ -2,8 +2,8 @@ import { prismaClient } from "@/app/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import * as yt from "youtube-search-without-api-key"
-//@ts-ignore
-import youtubesearchapi from "youtube-search-api";
+import { Prisma } from "@prisma/client";
+
 
 
 // const YoutubeRegex = new RegExp("^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=)?([a-zA-Z0-9_-]{11})$");
@@ -80,6 +80,7 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
     try {
         const creatorId = req.nextUrl.searchParams.get("creatorId");
+        const upvote = req.nextUrl.searchParams.get("upvote");
 
         console.log("req : ", req.nextUrl);
         console.log("creatorId : " , creatorId);
@@ -89,12 +90,17 @@ export async function GET(req: NextRequest) {
             where: {
                 userId: creatorId ?? "",
             },
-            orderBy: {
-                upvote:  "desc" 
-            }
+            include: {
+                upvotes: {
+                   select: {
+                    _count: true
+                   } as Prisma.UpvotesSelect
+                },
+            },
+            
         });
 
-        return NextResponse.json(streams, { status: 200 });
+        return NextResponse.json(streams,  { status: 200 });
     } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 500 });
     }

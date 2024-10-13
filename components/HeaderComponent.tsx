@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Appbar } from '@/app/components/Appbar';
+import { Appbar } from '@/components/Appbar';
 
 const HeaderComponent = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -24,6 +24,7 @@ const HeaderComponent = () => {
       {/* Hamburger menu for smaller screens */}
       <div className="md:hidden">
         <button
+          type="button"
           onClick={toggleDrawer}
           className="relative w-6 h-6 focus:outline-none"
         >
@@ -53,7 +54,9 @@ const HeaderComponent = () => {
             {item}
           </motion.a>
         ))}
+        <div className="m-6 relative z-20">
         <Appbar />
+        </div>
       </nav>
 
       {/* Drawer for smaller screens */}
@@ -62,7 +65,8 @@ const HeaderComponent = () => {
       >
         <div className="p-4">
           {/* Close button */}
-          <button 
+          <button
+            type='button' 
             onClick={toggleDrawer} 
             className="text-orange-500 focus:outline-none mb-4"
           >
@@ -82,11 +86,11 @@ const HeaderComponent = () => {
               {item}
             </a>
           ))}
-
           {/* Appbar component */}
-          <div className="mt-6">
+          <div className="mt-6 relative z-50">
             <Appbar />
           </div>
+
         </div>
       </div>
 
